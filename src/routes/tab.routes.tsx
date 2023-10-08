@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { Home } from "@screens/Home";
 import { Adverts } from "@screens/Adverts";
 import { useAuth } from "@hooks/useAuth";
+import { useAuthStore } from "../store/index";
 
 type BottomTabRoutes = {
   Home: undefined;
@@ -24,7 +25,7 @@ export type TabNavigatorRoutesProps = BottomTabNavigationProp<BottomTabRoutes>;
 const { Navigator, Screen } = createBottomTabNavigator<BottomTabRoutes>();
 
 export function TabRoutes() {
-  const { signOut } = useAuth();
+  const signOut = useAuthStore((state) => state.signOut);
   function handleLogout() {
     signOut();
   }

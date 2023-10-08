@@ -18,7 +18,7 @@ import theme from "@theme/index";
 import { ActivityIndicator, ScrollView } from "react-native";
 import { Keyboard, Alert } from "react-native";
 
-import { useAuth } from "@hooks/useAuth";
+import { useAuthStore } from "../../store/index";
 
 type SubmitProps = {
   email: string;
@@ -31,7 +31,7 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [secureTextEntryIncon, setSecureTextEntryIncon] = useState(true);
 
-  const { singIn } = useAuth();
+  const singIn = useAuthStore((state) => state.singIn);
 
   async function onSubmit({ email, password }: SubmitProps) {
     try {

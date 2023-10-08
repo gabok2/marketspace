@@ -3,7 +3,7 @@ import theme from "./src/theme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeProvider } from "styled-components";
 import { Routes } from "@routes/index";
-import { AuthContextProvider } from "@contexts/AuthContext";
+// import { AuthContextProvider } from "@contexts/AuthContext";
 
 export default function App() {
   return (
@@ -15,9 +15,7 @@ export default function App() {
       }}
     >
       <ThemeProvider theme={theme}>
-        <AuthContextProvider>
-          <Routes />
-        </AuthContextProvider>
+        <Routes />
       </ThemeProvider>
     </SafeAreaView>
   );

@@ -10,9 +10,10 @@ import { Button } from "@components/Button";
 import theme from "@theme/index";
 import { api } from "@services/api";
 import { useAuth } from "@hooks/useAuth";
+import { useAuthStore } from "../../store/index";
 
 export function Header() {
-  const { user } = useAuth();
+  const user = useAuthStore((state) => state.user);
 
   return (
     <>

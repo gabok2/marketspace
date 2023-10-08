@@ -80,7 +80,7 @@ type RouteParams = {
 export function DetailsProducts({ route }: RouteParams) {
   const navigation = useNavigation<AppNavigatorRoutesProps>();
   const [detailsProduct, setDetailsProduct] = useState<PropsDetails>();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { id } = route.params;
 
@@ -90,10 +90,10 @@ export function DetailsProducts({ route }: RouteParams) {
 
   async function loadDetailsProducts() {
     try {
+      setIsLoading(true);
       await api.get<PropsDetails>(`/products/${id}`).then((response) => {
         setDetailsProduct(response.data);
       });
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
@@ -111,7 +111,15 @@ export function DetailsProducts({ route }: RouteParams) {
   return (
     <>
       {isLoading ? (
-        <ActivityIndicator size="large" />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ActivityIndicator size="large" />
+        </View>
       ) : (
         detailsProduct && (
           <Container>
